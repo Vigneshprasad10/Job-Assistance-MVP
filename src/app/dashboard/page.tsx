@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import LogoutButton from '@/components/layout/LogoutButton'
 
@@ -24,10 +25,16 @@ export default async function DashboardPage() {
       <nav className="bg-white dark:bg-gray-800 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-            <div className="flex items-center">
+            <div className="flex items-center space-x-8">
               <h1 className="text-xl font-bold text-gray-900 dark:text-white">
                 Job Assistance Dashboard
               </h1>
+              <Link
+                href="/profile"
+                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium"
+              >
+                Edit Profile
+              </Link>
             </div>
             <div className="flex items-center">
               <LogoutButton />
@@ -58,9 +65,9 @@ export default async function DashboardPage() {
                   <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
                     Account Created
                   </dt>
-                      <dd className="mt-1 text-sm text-gray-900 dark:text-white">
-                        {user.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}
-                      </dd>
+                  <dd className="mt-1 text-sm text-gray-900 dark:text-white">
+                    {user.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}
+                  </dd>
                 </div>
 
                 {profile?.location && (
